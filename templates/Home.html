@@ -26,7 +26,6 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background-image: url("background.png");
        background-repeat: no-repeat;
       }
       form {
@@ -120,6 +119,7 @@
     <div class="main-block">
       <div class="left-part" style="align-items: center;">
         <i class="fas fa-envelope" style="background:#f5f5f5"></i>
+        <img src="{{url_for('static',filename='bg.png')}}">
           <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Find the Best Saling prise for Your Car</h1>
           <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enter the details of the car  will show you the best price according to the &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp previous car sold </h3>
 
@@ -127,30 +127,43 @@
           	<br>
           	<br>
           	<br>
+          	{%if prediction%}
                     <h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Best Prise for Your Car</h1>
-          <h1 style="color: green" style="font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8000</h3>
+          <h1 style="color: green" style="font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{prediction}}</h3>
+          	{% endif%}
           <div></div>
         <i class="fas fa-at"></i>
         <i class="fas fa-mail-bulk"></i>
       </div>
-      <form action="/">
+      <form action="/" method="post">
         <h1>Car Details</h1>
         <div class="info">
-          <input class="fname" type="text" name="Name" placeholder="Car name">
-          <input type="Year" name="name" placeholder="Year in which the car was bought">
-          <input type="text" name="name" placeholder="Price you wants to sell">
-          <input type="text" name="name" placeholder="Showroom price">
+          <input class="fname" type="text" name="carName" placeholder="Car name">
+          <input type="Year" name="year" placeholder="Year in which the car was bought">
+          <input type="text" name="price" placeholder="Showroom price">
+          <input type="text" name="kmDriven" placeholder="Kms Driven">
           <label>Fuel Type</label>
-          <select required >
-                <option value="">Petrol</option>
-             	<option value="1">Diesel</option>
+          <select required name="fuelType" >
+                <option value="Petrol">Petrol</option>
+             	<option value="Diesel">Diesel</option>
            </select>
-          <input type="text" name="name" placeholder="Kms Driven">
-          <input type="text" name="name" placeholder="Seller Type">
           <label>Seller Type</label>
-          <select required >
-              	<option value="">Dealer</option>
-                <option value="1">Individual</option>
+          <select required name="sellerType">
+              	<option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+
+             <label>Transmission</label>
+          <select required name="transmission">
+              	<option value="Manul">Manul</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+
+            <label>Onears</label>
+            <select required name="owner">
+              	<option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
             </select>
           <button type="submit" href="/">Submit</button>
         </div>
