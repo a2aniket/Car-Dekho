@@ -42,7 +42,7 @@ def home():
             owner_two = 1
 
         car_details = [5, year, price, km_driven, fuel_type_diesel, fuel_type_petrol, seller_type_dealer, transmission_manual, owner_one, owner_two]
-        prediction=model.predict([car_details])
+        prediction = model.predict([car_details])
         prediction = round(prediction[0], 2)
     return render_template("Home.html", prediction=prediction)
 
